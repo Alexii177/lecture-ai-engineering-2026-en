@@ -1,0 +1,201 @@
+{
+  "summary": {
+    "label": "before",
+    "n": 21,
+    "format_rate": 1.0,
+    "content_rate": 0.23809523809523808,
+    "both_rate": 0.23809523809523808,
+    "seconds": 22.4
+  },
+  "rows": [
+    {
+      "question": "What can students learn with RotorTutor?",
+      "raw": "{\"answer\": \"Students learn how to balance rotating machinery by using RotorTutor to measure vibration and correct rotor imbalance.\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "Which engineering topic is taught by RotorTutor?",
+      "raw": "{\"answer\": \"Rotor balancing\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "What subject is the RotorTutor learning activity about?",
+      "raw": "{\"answer\": \"Rotor balancing\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "How many holes are available for positioning a correction mass?",
+      "raw": "{\"answer\": \"8\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "How many holes can be used to position the correction mass?",
+      "raw": "{\"answer\": \"8\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "State the number of correction holes on the rotor disc.",
+      "raw": "{\"answer\": \"8\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "For how long are measurements collected in each run?",
+      "raw": "{\"answer\": \"20 seconds\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "State the measurement duration for each run.",
+      "raw": "{\"answer\": \"20 seconds\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "How long is one data collection run in seconds?",
+      "raw": "{\"answer\": \"20\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "Which correction settings must the student enter?",
+      "raw": "{\n\"answer\": \"The student must enter the correction mass in grams and the hole number.\",\n\"needs_review\": true\n}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "What mass information and position information must I enter?",
+      "raw": "{\"answer\": \"The mass information is the correction mass in grams, and the position information is the hole number.\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "What should I specify about the correction mass before the next run?",
+      "raw": "{\"answer\": \"Enter the correction mass in grams and the hole number.\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "What vibration measures should I examine to assess the correction?",
+      "raw": "{\"answer\": \"RMS vibration and peak amplitude\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": false
+    },
+    {
+      "question": "Which two vibration indicators are compared between the runs?",
+      "raw": "{\"answer\": \"RMS vibration and peak amplitude\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "Name the measurements used to assess vibration before and after correction.",
+      "raw": "{\"answer\": \"RMS vibration and peak amplitude\", \"needs_review\": false}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": false
+    },
+    {
+      "question": "What is the maximum permitted rotational speed?",
+      "raw": "{\"answer\": \"None specified\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": true
+    },
+    {
+      "question": "What tightening torque should be used for the correction mass?",
+      "raw": "{\"answer\": \"None\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": true
+    },
+    {
+      "question": "What numerical RMS vibration limit defines a successful correction?",
+      "raw": "{\"answer\": \"1000\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": true
+    },
+    {
+      "question": "What is the maximum correction mass allowed?",
+      "raw": "{\"answer\": \"None\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": true
+    },
+    {
+      "question": "How frequently must the vibration sensors be calibrated?",
+      "raw": "{\"answer\": \"Confirmation is needed\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": true,
+      "both_ok": true,
+      "gold_needs_review": true
+    },
+    {
+      "question": "What is the distance between the two bearings?",
+      "raw": "{\"answer\": \"The FAQ does not contain information regarding the distance between the two bearings.\", \"needs_review\": true}",
+      "format_ok": true,
+      "format_reason": "",
+      "content_ok": false,
+      "both_ok": false,
+      "gold_needs_review": true
+    }
+  ]
+}
