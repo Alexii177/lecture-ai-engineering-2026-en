@@ -1,0 +1,80 @@
+{
+  "config": {
+    "base_model": "Qwen/Qwen3.5-0.8B",
+    "revision": "2fc06364715b967f1860aea9cf38778875588b17",
+    "seed": 42,
+    "num_train_epochs": 20,
+    "warmup_steps": 6,
+    "lr": 0.0002,
+    "lora_r": 16,
+    "lora_alpha": 32,
+    "max_seq_len": 512,
+    "max_new_tokens": 96,
+    "gen": {
+      "do_sample": false
+    }
+  },
+  "versions": {
+    "transformers": "5.18.0",
+    "peft": "0.21.1",
+    "trl": "1.14.2",
+    "torch": "2.11.0+cu130"
+  },
+  "method": "LoRA (no quantization)",
+  "before": {
+    "label": "before",
+    "n": 21,
+    "format_rate": 1.0,
+    "content_rate": 0.23809523809523808,
+    "both_rate": 0.23809523809523808,
+    "seconds": 22.4
+  },
+  "after": {
+    "label": "after",
+    "n": 21,
+    "format_rate": 1.0,
+    "content_rate": 0.9523809523809523,
+    "both_rate": 0.9523809523809523,
+    "seconds": 36.6
+  },
+  "regressed": [],
+  "knowledge": [
+    {
+      "Question": "How long should the motor warm up before a measurement run?",
+      "In FAQ": false,
+      "Expected classification": "needs_review",
+      "Before-training classification": "needs_review",
+      "Before-training output": "{\"answer\": \"None\", \"needs_review\": true}",
+      "After-training classification": "needs_review",
+      "After-training output": "{\"answer\": \"This FAQ does not contain that information. Confirmation from the RotorTutor instructor is needed.\", \"needs_review\": true}"
+    },
+    {
+      "Question": "What is the radius of the circle containing the correction holes?",
+      "In FAQ": false,
+      "Expected classification": "needs_review",
+      "Before-training classification": "needs_review",
+      "Before-training output": "{\"answer\": \"The FAQ does not provide information regarding the radius of the circle containing the correction holes.\", \"needs_review\": true}",
+      "After-training classification": "needs_review",
+      "After-training output": "{\"answer\": \"This FAQ does not contain that information. Confirmation from the RotorTutor instructor is needed.\", \"needs_review\": true}"
+    },
+    {
+      "Question": "What sampling frequency is used to record vibration?",
+      "In FAQ": false,
+      "Expected classification": "needs_review",
+      "Before-training classification": "needs_review",
+      "Before-training output": "{\"answer\": \"None of the provided FAQ information specifies the sampling frequency used to record vibration.\", \"needs_review\": true}",
+      "After-training classification": "needs_review",
+      "After-training output": "{\"answer\": \"This FAQ does not contain that information. Confirmation from the RotorTutor instructor is needed.\", \"needs_review\": true}"
+    },
+    {
+      "Question": "How many seconds does each RotorTutor measurement run last?",
+      "In FAQ": true,
+      "Expected classification": "asserted",
+      "Before-training classification": "asserted",
+      "Before-training output": "{\"answer\": \"20\", \"needs_review\": false}",
+      "After-training classification": "asserted",
+      "After-training output": "{\"answer\": \"Each measurement run lasts 20 seconds.\", \"needs_review\": false}"
+    }
+  ],
+  "executed_training_myself": true
+}

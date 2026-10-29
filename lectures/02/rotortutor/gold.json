@@ -1,0 +1,143 @@
+{
+  "What can students learn with RotorTutor?": {
+    "needs_review": false,
+    "must_include": [
+      "rotor balancing"
+    ]
+  },
+  "Which engineering topic is taught by RotorTutor?": {
+    "needs_review": false,
+    "must_include": [
+      "rotor balancing"
+    ]
+  },
+  "What subject is the RotorTutor learning activity about?": {
+    "needs_review": false,
+    "must_include": [
+      "rotor balancing"
+    ]
+  },
+  "How many holes are available for positioning a correction mass?": {
+    "needs_review": false,
+    "must_include": [
+      "8",
+      "holes"
+    ]
+  },
+  "How many holes can be used to position the correction mass?": {
+    "needs_review": false,
+    "must_include": [
+      "8",
+      "holes"
+    ]
+  },
+  "State the number of correction holes on the rotor disc.": {
+    "needs_review": false,
+    "must_include": [
+      "8",
+      "holes"
+    ]
+  },
+  "For how long are measurements collected in each run?": {
+    "needs_review": false,
+    "must_include": [
+      "20",
+      "seconds"
+    ]
+  },
+  "State the measurement duration for each run.": {
+    "needs_review": false,
+    "must_include": [
+      "20",
+      "seconds"
+    ]
+  },
+  "How long is one data collection run in seconds?": {
+    "needs_review": false,
+    "must_include": [
+      "20",
+      "seconds"
+    ]
+  },
+  "Which correction settings must the student enter?": {
+    "needs_review": false,
+    "must_include": [
+      "mass",
+      "grams",
+      "hole"
+    ]
+  },
+  "What mass information and position information must I enter?": {
+    "needs_review": false,
+    "must_include": [
+      "mass",
+      "grams",
+      "hole"
+    ]
+  },
+  "What should I specify about the correction mass before the next run?": {
+    "needs_review": false,
+    "must_include": [
+      "mass",
+      "grams",
+      "hole"
+    ]
+  },
+  "What vibration measures should I examine to assess the correction?": {
+    "needs_review": false,
+    "must_include": [
+      "RMS",
+      "peak amplitude"
+    ]
+  },
+  "Which two vibration indicators are compared between the runs?": {
+    "needs_review": false,
+    "must_include": [
+      "RMS",
+      "peak amplitude"
+    ]
+  },
+  "Name the measurements used to assess vibration before and after correction.": {
+    "needs_review": false,
+    "must_include": [
+      "RMS",
+      "peak amplitude"
+    ]
+  },
+  "What is the maximum permitted rotational speed?": {
+    "needs_review": true,
+    "must_include": [
+      "Confirmation"
+    ]
+  },
+  "What tightening torque should be used for the correction mass?": {
+    "needs_review": true,
+    "must_include": [
+      "Confirmation"
+    ]
+  },
+  "What numerical RMS vibration limit defines a successful correction?": {
+    "needs_review": true,
+    "must_include": [
+      "Confirmation"
+    ]
+  },
+  "What is the maximum correction mass allowed?": {
+    "needs_review": true,
+    "must_include": [
+      "Confirmation"
+    ]
+  },
+  "How frequently must the vibration sensors be calibrated?": {
+    "needs_review": true,
+    "must_include": [
+      "Confirmation"
+    ]
+  },
+  "What is the distance between the two bearings?": {
+    "needs_review": true,
+    "must_include": [
+      "Confirmation"
+    ]
+  }
+}
