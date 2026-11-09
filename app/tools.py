@@ -103,3 +103,41 @@ def make_quiz(lecture: int) -> str:
         },
         ensure_ascii=False,
     )
+def save_learning_log(topic: str, notes: str) -> str:
+    """Save a learning record after user approval.
+
+    Use only when the learner explicitly asks to save learning notes.
+    Provide a short topic and the notes to save.
+    """
+    from datetime import datetime, timezone
+    from uuid import uuid4
+
+    if not topic.strip() or not notes.strip():
+        return json.dumps({
+            "error": "Both topic and notes must contain text."
+        })
+
+    log_dir = Path(__file__).resolve().parent.parent / "learning_log"
+    log_dir.mkdir(parents=True, exist_ok=True)
+
+    timestamp = datetime.now(timezone.utc)
+    filename = (
+        f"{timestamp:%Y%m%dT%H%M%S}_"
+        f"{uuid4().hex}.json"
+    )
+    path = log_dir / filename
+
+    record = {
+        "topic": topic.strip(),
+        "notes": notes.strip(),
+        "created_at": timestamp.isoformat(),
+    }
+
+    with path.open("x", encoding="utf-8") as file:
+        json.dump(record, file, ensure_ascii=False, indent=2)
+
+    return json.dumps({
+        "status": "saved",
+        "path": f"learning_log/{filename}",
+        "topic": record["topic"],
+    })
