@@ -1,0 +1,14 @@
+[model] gemini-3.5-flash-lite
+[full-context] Input: 369,490 characters
+To answer your question:
+
+- **LoRA** freezes the foundation model's original weights and trains only small added matrices (adapters) [Lecture 2, translated PDF p. 75].
+- **QLoRA** adds the compression of the original foundation model weights down to 4 bits (quantization) in order to further reduce memory usage [Lecture 2, translated PDF p. 75]. 
+
+**Hint for further thinking:** 
+Think about how these two methods affect memory usage on a GPU. Why might compressing weights to 4 bits make it possible to fine-tune a much larger model on a single GPU with limited memory?
+
+--- trace ---
+[time] Answer completed in 6.28 seconds (including retrieval and embedding)
+[usage] Input 95,823 tokens / Output 136 tokens / Model responses 1
+[cost] Estimated generation API cost: $0.029087 USD (excludes embedding and index construction)

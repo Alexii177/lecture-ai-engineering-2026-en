@@ -1,0 +1,15 @@
+[model] gemini-3.5-flash-lite
+To help you think about these memory mechanisms, let's look at where they operate and how information is processed:
+
+1. **Scope and Operations:** 
+   - Think about where **compaction** takes place—does it happen inside the current session's context window, or does it persist across different sessions? Compare this with the **memory tools** or external storage used for cross-session persistence. *(Hint: Check Lecture 3, pages 39 and 65, which explain how compaction compresses "history within the loop" versus how external storage covers records "across sessions".)*
+
+2. **Daily Notes vs. Long-Term Memory:**
+   - Look at how systems like OpenClaw handle daily notes (`memory/<date>.md`) versus long-term memory (`MEMORY.md`). Do all notes automatically get transferred, or is there an automated review/filtering process (sometimes described as "dreaming") that decides what to keep? *(Hint: Review Lecture 3, page 40, which outlines the review process of dropping duplicates, finding recurring themes, and only moving what passes a specific threshold.)*
+
+--- trace ---
+[tool call]   search_materials({'query': 'compaction cross-session memory daily notes long-term memory'})
+[tool return] search_materials -> {"results": [{"page_id": "lec03-main-p065", "document_id": "lec03-main", "lecture": 3, "document_title": "AI Agents", "s…
+[time] Answer completed in 6.70 seconds (including retrieval and embedding)
+[usage] Input 2,285 tokens / Output 260 tokens / Model responses 2
+[cost] Estimated generation API cost: $0.001336 USD (excludes embedding and index construction)

@@ -1,0 +1,17 @@
+[model] gemini-3.5-flash-lite
+To understand the difference between compaction and cross-session memory, and how daily notes are handled, let's look at how memory scopes and management are structured in Lecture 3:
+
+* **Compaction vs. Cross-Session Memory:** 
+  * **Compaction** operates *within* a session (inside the current context window), replacing older conversation history with a summary to fit within context limits [Lecture 3 · translated PDF p.39, p.65]. 
+  * **Cross-session memory** (such as external storage, memory tools, or long-term memory files) captures records that persist *across* different sessions so the agent doesn't start entirely from scratch the next day [Lecture 3 · translated PDF p.38, p.39].
+
+* **Do all daily notes automatically become long-term memory?**
+  * Think about how systems like OpenClaw manage daily notes versus long-term memory. Instead of blindly keeping everything (which can cause long-term memory to bloat with old info and errors), a nightly review/dreaming process filters the information [Lecture 3 · translated PDF p.38, p.40]. 
+  * Specifically, it collects and drops duplicates, compares them to find recurring themes, and only moves information that *passes a threshold* into long-term memory (`MEMORY.md`). One-off lookups stay only in the daily notes [Lecture 3 · translated PDF p.40].
+
+--- trace ---
+[tool call]   search_materials({'query': 'compaction cross-session memory daily notes long-term memory'})
+[tool return] search_materials -> {"results": [{"page_id": "lec03-main-p065", "document_id": "lec03-main", "lecture": 3, "document_title": "AI Agents", "s…
+[time] Answer completed in 3.90 seconds (including retrieval and embedding)
+[usage] Input 4,060 tokens / Output 336 tokens / Model responses 2
+[cost] Estimated generation API cost: $0.002058 USD (excludes embedding and index construction)

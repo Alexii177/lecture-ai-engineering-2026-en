@@ -1,0 +1,14 @@
+[model] gemini-3.5-flash-lite
+According to Lecture 2 (slides 51 and 52), here is how LoRA and QLoRA handle model parameters:
+
+* **LoRA freezes** the original base model weights so they are not changed or trained. Instead, it **trains** only small added components (represented as low-rank matrices, such as the thin matrices $A$ and $B$) that capture the change or delta needed for adaptation [Lecture 2, p. 51–52].
+* **QLoRA** builds upon LoRA by **adding** a quantization step: it compresses the original base model weights down to a 4-bit numerical representation (a coarser representation), which drastically reduces memory usage while still training only the small LoRA adapters [Lecture 2, p. 51–52].
+
+Think about how keeping the massive underlying foundation model untouched—while only updating a tiny fraction of parameters or storing the base in a lower precision format—makes it possible to fine-tune very large models on modest hardware like a single GPU [Lecture 2, p. 52].
+
+--- trace ---
+[tool call]   search_graph({'query': 'LoRA freeze train QLoRA add Lecture 2'})
+[tool return] search_graph -> {"seeds": [{"page_id": "lec02-main-p052", "document_id": "lec02-main", "lecture": 2, "document_title": "Fundamentals of …
+[time] Answer completed in 3.58 seconds (including retrieval and embedding)
+[usage] Input 5,186 tokens / Output 254 tokens / Model responses 2
+[cost] Estimated generation API cost: $0.002191 USD (excludes embedding and index construction)

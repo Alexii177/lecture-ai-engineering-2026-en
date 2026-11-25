@@ -1,0 +1,193 @@
+{
+  "query": "compaction cross-session memory daily notes long-term memory",
+  "before": [
+    {
+      "page_id": "lec03-main-p065",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Appendix",
+      "title": "Supplement: Latest developments in memory and Context Engineering",
+      "page": 65,
+      "content": "Supplement: Latest developments in memory and Context Engineering\nHistory summarization (compaction) and file-based memory are now API features. Both still just save and re-inject; that part has not changed.\nWhat changed\nItem\nUpdate\nDate\nAutomatic compaction\nAPI that summarizes history on the server, released in beta\n2026/2/5\nCompaction at any point\nThe application decides when to summarize. Images and documents in the summarized range are lost\nBeta 2026/9/14\nMemory tool\nThe model requests file operations; the application executes them in its own storage. Beta flag no longer needed\n2026/2/17\nLink to the lecture: Of the three scopes, compaction compresses “history within the loop”; the memory tool covers “records across sessions.” Weights don't change.\nCaveats: The application owns the storage. The docs require validating paths outside it. Instructions lost in a summary no longer apply.\nSource: Anthropic “Claude Platform release notes” (2026/2/5, 2/17, 9/14), “Memory tool”, docs on compaction at any point (the latter two undated). Information checked: 2026/10/9",
+      "citation": "Lecture 3 · translated PDF p.65",
+      "distance": 0.30738240480422974
+    },
+    {
+      "page_id": "lec03-main-p038",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Part 6 Memory",
+      "title": "Without memory, every session starts from scratch",
+      "page": 38,
+      "content": "Without memory, every session starts from scratch\nIf you ask “Fix the failing test” again the next day, can the agent reuse the cause it identified before?\nSource: Based on Luo et al., “From Storage to Experience,” arXiv:2605.06716 (2026/5/7, ACL 2026 Findings), §1 and §3.2; Ding et al., “Always-On Agents,” arXiv:2606.30306 (2026/6/29); Anthropic, “Compaction overview” (Claude Platform Docs, accessed 2026/10/21).\n1\nStarting from scratch\nRe-explaining past\ndecisions\n2\nRepeating mistakes\nRe-investigating causes\nfound last time\n3\nLong tasks get cut off\nContext limit drops\nintermediate progress\nStoring everything brings back old info and errors too. Design what to keep and what to discard.",
+      "citation": "Lecture 3 · translated PDF p.38",
+      "distance": 0.30904117226600647
+    },
+    {
+      "page_id": "lec03-main-p039",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Part 6 Memory",
+      "title": "Example: Claude",
+      "page": 39,
+      "content": "Example: Claude\nAn example in Claude: some mechanisms work within a session, while others work across sessions\nSource: Anthropic, “Compaction overview” and “Memory tool” (Claude Platform Docs); “How Claude remembers your project” (Claude Code Docs); all accessed 2026/10/21. Packer et al. (2023), arXiv:2310.08560.\nInside the context (same session)\nCompaction (summarize history to fit)\nReplaces old history with a summary.\nExternal storage (across sessions)\nMemory tool (Claude API)\nThe model requests operations on files in /memories;\nthe application executes them in its own storage\nAuto memory (Claude Code)\nClaude writes its own notes and\nloads the first 200 lines or 25KB each time\nWrite out\nThe agent reads it back when needed\nStored memory enters the next context. A human checks its contents.\nThere is also a risk of writes from outside.",
+      "citation": "Lecture 3 · translated PDF p.39",
+      "distance": 0.31606343388557434
+    },
+    {
+      "page_id": "lec03-main-p040",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Part 6 Memory",
+      "title": "Example: OpenClaw",
+      "page": 40,
+      "content": "Example: OpenClaw\nEvery night, it rereads past conversations and moves only what to keep into long-term memory.\nSource: OpenClaw Docs, “Memory overview” and “Memory architecture,” as of 2026/10. Stage descriptions are summarized.\nDaily notes (memory/<date>.md)\nNotes from 10/24\nNotes from 10/25\nNotes from 10/26\nNightly, automatic\nReview (dreaming)\n1 Collect: drop duplicates, and list candidates\n2 Compare: find recurring themes\n3 Move: keep only what passes the threshold\nMEMORY.md (long-term memory)　Loaded at the start of the next session\nNo manual cleanup needed\nNot everything is kept\nOne-off lookups stay only in daily notes, so long-term memory doesn't bloat.",
+      "citation": "Lecture 3 · translated PDF p.40",
+      "distance": 0.31931406259536743
+    },
+    {
+      "page_id": "lec03-main-p013",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Part 2 Building an agent",
+      "title": "Memory",
+      "page": 13,
+      "content": "Memory\nContext is finite. When starting a new chat, we want a system that can refer to past context.\nSource: Schematic for illustration. Where it is stored (files, database, etc.) and how it is retrieved (all entries, search, etc.) vary by implementation.\nPast chat\nYesterday: asked to fix a test\n- Wanted to run it with pytest\n- Cause: range bounds\n- Instruction: \"Write comments\nin Japanese\"\n①\nWrite out\nMemory (external storage)\nRun tests with pytest\nWatch the range bounds\nWrite comments in Japanese\n②\nLoad back\nNew context\nMemory: run with pytest /\ncomments in Japanese\nMessage: another test fails too,\nplease fix it.\nRemembering ≠ learning.",
+      "citation": "Lecture 3 · translated PDF p.13",
+      "distance": 0.34436872601509094
+    }
+  ],
+  "after": [
+    {
+      "page_id": "lec03-main-p065",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Appendix",
+      "title": "Supplement: Latest developments in memory and Context Engineering",
+      "page": 65,
+      "content": "Supplement: Latest developments in memory and Context Engineering\nHistory summarization (compaction) and file-based memory are now API features. Both still just save and re-inject; that part has not changed.\nWhat changed\nItem\nUpdate\nDate\nAutomatic compaction\nAPI that summarizes history on the server, released in beta\n2026/2/5\nCompaction at any point\nThe application decides when to summarize. Images and documents in the summarized range are lost\nBeta 2026/9/14\nMemory tool\nThe model requests file operations; the application executes them in its own storage. Beta flag no longer needed\n2026/2/17\nLink to the lecture: Of the three scopes, compaction compresses “history within the loop”; the memory tool covers “records across sessions.” Weights don't change.\nCaveats: The application owns the storage. The docs require validating paths outside it. Instructions lost in a summary no longer apply.\nSource: Anthropic “Claude Platform release notes” (2026/2/5, 2/17, 9/14), “Memory tool”, docs on compaction at any point (the latter two undated). Information checked: 2026/10/9",
+      "citation": "Lecture 3 · translated PDF p.65",
+      "distance": 0.30738240480422974
+    },
+    {
+      "page_id": "lec03-main-p038",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Part 6 Memory",
+      "title": "Without memory, every session starts from scratch",
+      "page": 38,
+      "content": "Without memory, every session starts from scratch\nIf you ask “Fix the failing test” again the next day, can the agent reuse the cause it identified before?\nSource: Based on Luo et al., “From Storage to Experience,” arXiv:2605.06716 (2026/5/7, ACL 2026 Findings), §1 and §3.2; Ding et al., “Always-On Agents,” arXiv:2606.30306 (2026/6/29); Anthropic, “Compaction overview” (Claude Platform Docs, accessed 2026/10/21).\n1\nStarting from scratch\nRe-explaining past\ndecisions\n2\nRepeating mistakes\nRe-investigating causes\nfound last time\n3\nLong tasks get cut off\nContext limit drops\nintermediate progress\nStoring everything brings back old info and errors too. Design what to keep and what to discard.",
+      "citation": "Lecture 3 · translated PDF p.38",
+      "distance": 0.30904117226600647
+    },
+    {
+      "page_id": "lec03-main-p039",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Part 6 Memory",
+      "title": "Example: Claude",
+      "page": 39,
+      "content": "Example: Claude\nAn example in Claude: some mechanisms work within a session, while others work across sessions\nSource: Anthropic, “Compaction overview” and “Memory tool” (Claude Platform Docs); “How Claude remembers your project” (Claude Code Docs); all accessed 2026/10/21. Packer et al. (2023), arXiv:2310.08560.\nInside the context (same session)\nCompaction (summarize history to fit)\nReplaces old history with a summary.\nExternal storage (across sessions)\nMemory tool (Claude API)\nThe model requests operations on files in /memories;\nthe application executes them in its own storage\nAuto memory (Claude Code)\nClaude writes its own notes and\nloads the first 200 lines or 25KB each time\nWrite out\nThe agent reads it back when needed\nStored memory enters the next context. A human checks its contents.\nThere is also a risk of writes from outside.",
+      "citation": "Lecture 3 · translated PDF p.39",
+      "distance": 0.31606343388557434
+    },
+    {
+      "page_id": "lec03-main-p040",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Part 6 Memory",
+      "title": "Example: OpenClaw",
+      "page": 40,
+      "content": "Example: OpenClaw\nEvery night, it rereads past conversations and moves only what to keep into long-term memory.\nSource: OpenClaw Docs, “Memory overview” and “Memory architecture,” as of 2026/10. Stage descriptions are summarized.\nDaily notes (memory/<date>.md)\nNotes from 10/24\nNotes from 10/25\nNotes from 10/26\nNightly, automatic\nReview (dreaming)\n1 Collect: drop duplicates, and list candidates\n2 Compare: find recurring themes\n3 Move: keep only what passes the threshold\nMEMORY.md (long-term memory)　Loaded at the start of the next session\nNo manual cleanup needed\nNot everything is kept\nOne-off lookups stay only in daily notes, so long-term memory doesn't bloat.",
+      "citation": "Lecture 3 · translated PDF p.40",
+      "distance": 0.31931406259536743
+    },
+    {
+      "page_id": "lec03-main-p013",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Part 2 Building an agent",
+      "title": "Memory",
+      "page": 13,
+      "content": "Memory\nContext is finite. When starting a new chat, we want a system that can refer to past context.\nSource: Schematic for illustration. Where it is stored (files, database, etc.) and how it is retrieved (all entries, search, etc.) vary by implementation.\nPast chat\nYesterday: asked to fix a test\n- Wanted to run it with pytest\n- Cause: range bounds\n- Instruction: \"Write comments\nin Japanese\"\n①\nWrite out\nMemory (external storage)\nRun tests with pytest\nWatch the range bounds\nWrite comments in Japanese\n②\nLoad back\nNew context\nMemory: run with pytest /\ncomments in Japanese\nMessage: another test fails too,\nplease fix it.\nRemembering ≠ learning.",
+      "citation": "Lecture 3 · translated PDF p.13",
+      "distance": 0.34436872601509094
+    },
+    {
+      "page_id": "lec03-main-p064",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Appendix",
+      "title": "Supplement: Latest developments in long-task capability",
+      "page": 64,
+      "content": "Supplement: Latest developments in long-task capability\nMETR measures the 50% time horizon of frontier public models at ~12 hours (Feb–Mar 2026). Values over 16 hours are not reliable with the current task suite.\nWhat changed\nItem\nUpdate\nDate\n50% time horizon\n~12 hours for the best public models (ranges 5–61 hours). The length of tasks, measured in human working time, that a model has a 50% chance of completing successfully.\nEvaluated 2026/2–3\n80% time horizon\n~1.5 hours at the same point (ranges 50 min–2 h 40 min). Requiring a higher success rate greatly reduces the task length\nEvaluated 2026/2–3\nMeasurement limits\nGPT-5.6 Sol estimated at ~11.3 hours. Counting solutions obtained by cheating as successes gives over 270 hours; METR deemed this not a robust measurement\n2026/6/26\nLink to the lecture: “95% per step, ~36% over 20 steps” was a hypothetical example in the explanation, but real measurements also show a huge gap  between 50% and 80%. Running for a long time and finishing reliably are different things.\nCaveats: The time horizon measures task length, not how long a model can run nonstop. The Claude Opus 5.5 evaluation summary (2026/9/22) gives no time-horizon figures.\nSource: METR “Frontier Risk Report (February to March 2026)” (2026/5/19), “Summary of METR's predeployment evaluation of GPT-5.6 Sol” (2026/6/26), “Task-Completion Time Horizons of Frontier AI Models” (updated 2026/5/8). Information checked: 2026/10/9",
+      "citation": "Lecture 3 · translated PDF p.64"
+    },
+    {
+      "page_id": "lec03-main-p066",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Appendix",
+      "title": "Supplement: Latest developments in config file standards (AGENTS.md, Skills)",
+      "page": 66,
+      "content": "Supplement: Latest developments in config file standards (AGENTS.md, Skills)\nShared formats across tools are spreading: AGENTS.md for instruction files, Agent Skills for bundled procedures.\nWhat changed\nItem\nUpdate\nDate\nAGENTS.md\nDonated by OpenAI to the Agentic AI Foundation under the Linux Foundation. Adopted by 60,000+ public projects\n2025/12/9\nClaude Code support\nIn repositories without CLAUDE.md, reads AGENTS.md directly as instructions (v2.1.277+)\nDocs as of 2026/10\nAgent Skills\nA folder format containing SKILL.md. Only the name and description are read first; the body is read when needed. Skills API out of beta on the Claude API\n2026/8/19\nLink to the lecture: Side note on the part “config files are also instructions to the model.” Such files are converging on AGENTS.md, which Claude Code can now read.\nCaveats: Common formats make it easier to import outside instructions. Read others' AGENTS.md or Skills before letting them inside the boundary.\nSource: Linux Foundation announcement of the Agentic AI Foundation (2025/12/9), official AGENTS.md and Agent Skills websites, Anthropic “Claude Platform release notes” (2026/8/19), “How Claude remembers your project”. Information checked: 2026/10/9",
+      "citation": "Lecture 3 · translated PDF p.66"
+    },
+    {
+      "page_id": "lec03-main-p037",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Part 6 Memory",
+      "title": "Part 6 Memory",
+      "page": 37,
+      "content": "Part 6\nMemory\nImplementation examples · Skill",
+      "citation": "Lecture 3 · translated PDF p.37"
+    },
+    {
+      "page_id": "lec03-main-p041",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Part 6 Memory",
+      "title": "Skill: save the procedure for a repeated task as files",
+      "page": 41,
+      "content": "Skill: save the procedure for a repeated task as files\nMemory stores “what happened.” A Skill stores “how to do it.”\nSource: Anthropic, “Agent Skills” and “Skill authoring best practices” (Claude Platform Docs). Token counts are approximate. The Skill shown is a fictional example.\nInside a Skill (example: writing a weekly report)\nweekly-report/\nSKILL.md　← the steps\ntemplate.docx　← template\nscripts/collect.py　← tallies data\n---\nname: weekly-report\ndescription: Use when writing a weekly report\n---\n1. Collect this week's tickets\n2. Write a report using template.docx\n① Only the name and description go into context\nAbout 100 tokens each. The body isn't loaded, so context stays light\n② Loaded when a request needs the Skill\nOnly now does the body explaining the steps enter the context.",
+      "citation": "Lecture 3 · translated PDF p.41"
+    },
+    {
+      "page_id": "lec03-main-p012",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Part 2 Building an agent",
+      "title": "Loop: tool results are fed back to the model automatically",
+      "page": 12,
+      "content": "Loop: tool results are fed back to the model automatically\nSource: Based on Willison \"tools in a loop\" (2025/9/18) and Yao et al. (2022) ReAct.\nModel\nWrites the next action\nHarness\nProgram that runs the model\nTools\nTests, files, search\n① Write the call\n② Execute\n③ Return result to context",
+      "citation": "Lecture 3 · translated PDF p.12"
+    },
+    {
+      "page_id": "lec03-main-p014",
+      "document_id": "lec03-main",
+      "lecture": 3,
+      "document_title": "AI Agents",
+      "section": "Part 2 Building an agent",
+      "title": "Agent = model + harness",
+      "page": 14,
+      "content": "Agent = model + harness\nThe harness is the system that builds the context and executes tools.\nSource: Based on OpenAI “Harness engineering” (2026/2/11).\nAgent\nLLM\n＋\nHarness\nBuild the context\nHistory, memory, tool list\nExecute tools\nRun programs, return results to context\nKeep records\nWrite key points to memory\nCheck permissions; block tools as needed\nApprove risky actions",
+      "citation": "Lecture 3 · translated PDF p.14"
+    }
+  ]
+}
