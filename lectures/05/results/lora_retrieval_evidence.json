@@ -1,0 +1,193 @@
+{
+  "query": "LoRA freeze train QLoRA add",
+  "before": [
+    {
+      "page_id": "lec02-main-p052",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "LoRA and QLoRA: adapting a large model on one GPU",
+      "page": 52,
+      "content": "4/4: when and how to adapt the selected model\nLoRA and QLoRA: adapting a large model on one GPU\nFreeze the original weights and train only a small change, or delta, with LoRA. QLoRA also compresses the original weights to 4 bits.\nSources: E. J. Hu et al., “LoRA”, ICLR 2022; T. Dettmers et al., “QLoRA”, NeurIPS 2023. The exercise uses transformers, peft, bitsandbytes and TRL.\nLoRA, Hu et al., Fig. 1: train only A and B.\nBlue — original weights W: frozen, not trained. QLoRA stores them at 4 bits, a coarser numerical representation, reducing memory to about one quarter. About 4 GB for 7B.\nOrange — small matrices A and B: only these are trained. The product of two thin matrices represents the change, with low rank.\nAnalogy: leave the main model unchanged and add thin sticky notes. The trainable portion can be less than 1% of the total.\nThe QLoRA paper fine-tuned a 65-billion-parameter model on one 48 GB GPU.\n• Even a Colab GPU, for example 16 GB, can adapt a model with billions of parameters. This is today's exercise.\n• Data preparation, evaluation and operation still require separate effort.\n\n[Additional transcription of text in figures/images]\nLoRA diagram: Pretrained Weights W ∈ R^(d×d); x; h; A ~ N(0, σ²); B = 0; d; r.",
+      "citation": "Lecture 2 · Japanese source p.52 · corresponding translated PDF p.75",
+      "distance": 0.27503421902656555
+    },
+    {
+      "page_id": "lec02-main-p051",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "PEFT: train only part of a model",
+      "page": 51,
+      "content": "4/4: when and how to adapt the selected model\nPEFT: train only part of a model, not the whole model.\nFT that updates every parameter is expensive. Methods that train only a small number of parameters, or PEFT, have become mainstream.\nSources: original papers by Houlsby et al. (2019), Li and Liang (2021), Lester et al. (2021), and Hu et al. (2022). Available through the Hugging Face PEFT library.\nWhat is trained, Dettmers et al., Fig. 1:\nFull Fine-Tuning: update all parameters; large memory and storage requirements.\nLoRA: freeze the base model and update only a small added component.\nQLoRA: also compress the base model to 4 bits to save memory.\nMain PEFT methods:\nAdapters: insert small layers between existing layers and train only those. Houlsby et al., 2019.\nPrefix/prompt tuning: prepend trainable virtual tokens to the input. Li and Liang, 2021; Lester et al., 2021.\nLoRA: represent and learn weight changes as the product of two small, thin matrices, a low-rank representation. Hu et al., 2022. Currently the most widely used approach.\nQLoRA: LoRA plus compression of original weights to 4 bits for even lower memory use. Dettmers et al., 2023; next slide.\n\n[Additional transcription of text in figures/images]\nComparison diagram: Full Finetuning (No Adapters) / LoRA / QLoRA.\nOptimizer; Adapters; 16-bit Transformer; 4-bit Transformer.",
+      "citation": "Lecture 2 · Japanese source p.51",
+      "distance": 0.281087189912796
+    },
+    {
+      "page_id": "lec02-main-p047",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "Evidence and debate: RAG often works better for adding knowledge",
+      "page": 47,
+      "content": "4/4: when and how to adapt the selected model\nEvidence and debate: RAG often works better for adding knowledge.\nThis does not mean FT can add no knowledge at all. Treat it as a general rule while understanding the exceptions.\nSources: Ovadia et al., EMNLP 2024; Gekhman et al., EMNLP 2024; Biderman et al., TMLR 2024; Zhou et al., LIMA, NeurIPS 2023.\nResearch findings underlying the general rule:\nOvadia et al. (2024): on knowledge tasks, RAG consistently outperformed FT directly on documents.\nGekhman et al. (2024): examples containing new knowledge are learned slowly; learning more of them tends to increase errors, or hallucinations.\nBiderman et al. (2024): LoRA learns less and forgets less than full FT. It suits small adjustments.\nExceptions and differing findings:\n• Continued pre-training, or CPT, on large amounts of text can add language and domain knowledge, as in Japanese Swallow models.\n• Training on varied paraphrases of the same fact can make knowledge easier to learn through FT.\n• About 1,000 high-quality examples can substantially change behavior, as in LIMA.\n• Transferring a large model's behavior to a small one, or distillation, is also used to reduce cost and latency.",
+      "citation": "Lecture 2 · translated PDF p.79",
+      "distance": 0.31556016206741333
+    },
+    {
+      "page_id": "lec02-main-p060",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "Today's exercise: correct output format with QLoRA and measure the effect",
+      "page": 60,
+      "content": "Exercise\nToday's exercise: correct output format with QLoRA and measure the effect.\nContinue from the preparatory homework: exposing a model through an API using Colab + FastAPI + ngrok, and observing variation caused by temperature.\nPrepare: resolve difficulties from the preparatory homework.\nMeasure before: measure format compliance, repeating runs at the same temperature.\nTrain with QLoRA: fine-tune using examples that follow the required format.\nMeasure after: replace the model with the fine-tuned version and measure using the same questions.\nControl — knowledge questions: these should not change. If they do, question the evaluation.\nFormat compliance rate = the proportion of answers that can be parsed as JSON and contain all required fields: answer, slide and confidence.\nYou can say the issue was fixed only after running the same evaluation before and after.",
+      "citation": "Lecture 2 · Japanese source p.60",
+      "distance": 0.31944453716278076
+    },
+    {
+      "page_id": "lec02-main-p061",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "Exercise steps and deliverables — tentative",
+      "page": 61,
+      "content": "Exercise\nExercise steps and deliverables — tentative\nTimes are approximate. It is important to use the same questions, temperature and number of runs before and after.\n1. Preparation, 10 minutes: fix problems from the preparatory homework and check that the API works.\n2. Measure before FT, 10 minutes: use 30 evaluation questions × 3 runs to measure format compliance. Also save answers to 10 ordinary questions.\n3. Train with QLoRA, 20 minutes: train on 200 examples, taking roughly ten to twenty minutes on a Colab GPU.\n4. Measure after FT, 10 minutes: replace the model and use the same questions, temperature and number of runs as in step 2.\n5. Control — knowledge questions, 5 minutes: the examples include no facts, so the results should not change. If they do, suspect an evaluation or training error.\nDeliverables:\n• A before/after comparison table: format compliance and answers to ordinary questions.\n• Two examples of questions that were not fixed.\n• A three-line discussion of what improved, what did not, and why.\nUse 30 evaluation questions that do not overlap with training data. Small differences may be within the noise, so report variation across the three runs too.",
+      "citation": "Lecture 2 · Japanese source p.61",
+      "distance": 0.33777907490730286
+    }
+  ],
+  "after": [
+    {
+      "page_id": "lec02-main-p052",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "LoRA and QLoRA: adapting a large model on one GPU",
+      "page": 52,
+      "content": "4/4: when and how to adapt the selected model\nLoRA and QLoRA: adapting a large model on one GPU\nFreeze the original weights and train only a small change, or delta, with LoRA. QLoRA also compresses the original weights to 4 bits.\nSources: E. J. Hu et al., “LoRA”, ICLR 2022; T. Dettmers et al., “QLoRA”, NeurIPS 2023. The exercise uses transformers, peft, bitsandbytes and TRL.\nLoRA, Hu et al., Fig. 1: train only A and B.\nBlue — original weights W: frozen, not trained. QLoRA stores them at 4 bits, a coarser numerical representation, reducing memory to about one quarter. About 4 GB for 7B.\nOrange — small matrices A and B: only these are trained. The product of two thin matrices represents the change, with low rank.\nAnalogy: leave the main model unchanged and add thin sticky notes. The trainable portion can be less than 1% of the total.\nThe QLoRA paper fine-tuned a 65-billion-parameter model on one 48 GB GPU.\n• Even a Colab GPU, for example 16 GB, can adapt a model with billions of parameters. This is today's exercise.\n• Data preparation, evaluation and operation still require separate effort.\n\n[Additional transcription of text in figures/images]\nLoRA diagram: Pretrained Weights W ∈ R^(d×d); x; h; A ~ N(0, σ²); B = 0; d; r.",
+      "citation": "Lecture 2 · Japanese source p.52 · corresponding translated PDF p.75",
+      "distance": 0.27503421902656555
+    },
+    {
+      "page_id": "lec02-main-p051",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "PEFT: train only part of a model",
+      "page": 51,
+      "content": "4/4: when and how to adapt the selected model\nPEFT: train only part of a model, not the whole model.\nFT that updates every parameter is expensive. Methods that train only a small number of parameters, or PEFT, have become mainstream.\nSources: original papers by Houlsby et al. (2019), Li and Liang (2021), Lester et al. (2021), and Hu et al. (2022). Available through the Hugging Face PEFT library.\nWhat is trained, Dettmers et al., Fig. 1:\nFull Fine-Tuning: update all parameters; large memory and storage requirements.\nLoRA: freeze the base model and update only a small added component.\nQLoRA: also compress the base model to 4 bits to save memory.\nMain PEFT methods:\nAdapters: insert small layers between existing layers and train only those. Houlsby et al., 2019.\nPrefix/prompt tuning: prepend trainable virtual tokens to the input. Li and Liang, 2021; Lester et al., 2021.\nLoRA: represent and learn weight changes as the product of two small, thin matrices, a low-rank representation. Hu et al., 2022. Currently the most widely used approach.\nQLoRA: LoRA plus compression of original weights to 4 bits for even lower memory use. Dettmers et al., 2023; next slide.\n\n[Additional transcription of text in figures/images]\nComparison diagram: Full Finetuning (No Adapters) / LoRA / QLoRA.\nOptimizer; Adapters; 16-bit Transformer; 4-bit Transformer.",
+      "citation": "Lecture 2 · Japanese source p.51",
+      "distance": 0.281087189912796
+    },
+    {
+      "page_id": "lec02-main-p047",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "Evidence and debate: RAG often works better for adding knowledge",
+      "page": 47,
+      "content": "4/4: when and how to adapt the selected model\nEvidence and debate: RAG often works better for adding knowledge.\nThis does not mean FT can add no knowledge at all. Treat it as a general rule while understanding the exceptions.\nSources: Ovadia et al., EMNLP 2024; Gekhman et al., EMNLP 2024; Biderman et al., TMLR 2024; Zhou et al., LIMA, NeurIPS 2023.\nResearch findings underlying the general rule:\nOvadia et al. (2024): on knowledge tasks, RAG consistently outperformed FT directly on documents.\nGekhman et al. (2024): examples containing new knowledge are learned slowly; learning more of them tends to increase errors, or hallucinations.\nBiderman et al. (2024): LoRA learns less and forgets less than full FT. It suits small adjustments.\nExceptions and differing findings:\n• Continued pre-training, or CPT, on large amounts of text can add language and domain knowledge, as in Japanese Swallow models.\n• Training on varied paraphrases of the same fact can make knowledge easier to learn through FT.\n• About 1,000 high-quality examples can substantially change behavior, as in LIMA.\n• Transferring a large model's behavior to a small one, or distillation, is also used to reduce cost and latency.",
+      "citation": "Lecture 2 · translated PDF p.79",
+      "distance": 0.31556016206741333
+    },
+    {
+      "page_id": "lec02-main-p060",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "Today's exercise: correct output format with QLoRA and measure the effect",
+      "page": 60,
+      "content": "Exercise\nToday's exercise: correct output format with QLoRA and measure the effect.\nContinue from the preparatory homework: exposing a model through an API using Colab + FastAPI + ngrok, and observing variation caused by temperature.\nPrepare: resolve difficulties from the preparatory homework.\nMeasure before: measure format compliance, repeating runs at the same temperature.\nTrain with QLoRA: fine-tune using examples that follow the required format.\nMeasure after: replace the model with the fine-tuned version and measure using the same questions.\nControl — knowledge questions: these should not change. If they do, question the evaluation.\nFormat compliance rate = the proportion of answers that can be parsed as JSON and contain all required fields: answer, slide and confidence.\nYou can say the issue was fixed only after running the same evaluation before and after.",
+      "citation": "Lecture 2 · Japanese source p.60",
+      "distance": 0.31944453716278076
+    },
+    {
+      "page_id": "lec02-main-p061",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "Exercise steps and deliverables — tentative",
+      "page": 61,
+      "content": "Exercise\nExercise steps and deliverables — tentative\nTimes are approximate. It is important to use the same questions, temperature and number of runs before and after.\n1. Preparation, 10 minutes: fix problems from the preparatory homework and check that the API works.\n2. Measure before FT, 10 minutes: use 30 evaluation questions × 3 runs to measure format compliance. Also save answers to 10 ordinary questions.\n3. Train with QLoRA, 20 minutes: train on 200 examples, taking roughly ten to twenty minutes on a Colab GPU.\n4. Measure after FT, 10 minutes: replace the model and use the same questions, temperature and number of runs as in step 2.\n5. Control — knowledge questions, 5 minutes: the examples include no facts, so the results should not change. If they do, suspect an evaluation or training error.\nDeliverables:\n• A before/after comparison table: format compliance and answers to ordinary questions.\n• Two examples of questions that were not fixed.\n• A three-line discussion of what improved, what did not, and why.\nUse 30 evaluation questions that do not overlap with training data. Small differences may be within the noise, so report variation across the three runs too.",
+      "citation": "Lecture 2 · Japanese source p.61",
+      "distance": 0.33777907490730286
+    },
+    {
+      "page_id": "lec02-main-p053",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "For a chatbot: what to fine-tune and what not to",
+      "page": 53,
+      "content": "4/4: when and how to adapt the selected model\nFor a chatbot: what to fine-tune and what not to\nThis is the topic of today's exercise. In practice, first try prompts and the API's format controls.\nUse FT to change output format. We want the model always to return this JSON format:\n{\n  \"answer\": \"RAG retrieves documents and…\",\n  \"slide\": 13,\n  \"confidence\": \"high\"\n}\nFT does not fix the knowledge problem: questions such as “Which GPU is used in the Lecture 2 exercise?” depend on facts found only in the materials. FT is unlikely to make them answerable.\n→ Retrieve and provide the materials with RAG; Lecture 5.\nThe examples in this exercise contain no facts, so knowledge is naturally not expected to increase. Measure this to verify it.\nWe use JSON in the exercise because its effect is easy to count. In practice, first use API structured output when you only need to enforce a format. FT helps with behavior a format cannot enforce, such as tone or how evidence is presented.",
+      "citation": "Lecture 2 · Japanese source p.53"
+    },
+    {
+      "page_id": "lec02-main-p050",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "Decision sequence: measure, separate, prompt, then Fine-Tuning",
+      "page": 50,
+      "content": "4/4: when and how to adapt the selected model\nDecision sequence: measure → separate the problem → prompts → Fine-Tuning.\nThis makes Lecture 1's broad classification of models and methods concrete. Start with approaches that are cheap and quick to try, checking each with evaluation.\n1. First create an evaluation set, so you can measure whether the problem is fixed. Lecture 4.\n2. Do you want to change knowledge or behavior? For knowledge, retrieve and provide information with RAG. Lecture 5.\n3. Can prompts, including instructions and examples, fix it? If so, that is sufficient. Lecture 9.\n4. Does an unwanted behavior still remain? Consider Fine-Tuning.",
+      "citation": "Lecture 2 · Japanese source p.50"
+    },
+    {
+      "page_id": "lec02-main-p046",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "Small-scale FT changes behavior well but is weaker at adding knowledge",
+      "page": 46,
+      "content": "4/4: when and how to adapt the selected model\nSmall-scale FT changes behavior well but is weaker at adding knowledge.\nThe core of these 15 minutes: for behavior that prompts cannot fix, try Fine-Tuning. For knowledge, first try retrieval through RAG.\nBehavior: output format, tone and following procedures. A small number of examples can change it.\nKnowledge: new facts and current materials. Memorizing them through FT is inefficient, and some studies report increased errors.\nCost: if short prompts and a small model can produce the same behavior, the system becomes faster and cheaper.",
+      "citation": "Lecture 2 · Japanese source p.46"
+    },
+    {
+      "page_id": "lec02-main-p048",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "Continued pre-training: adding knowledge and language",
+      "page": 48,
+      "content": "4/4: when and how to adapt the selected model\nContinued pre-training (CPT): additional training to add knowledge and language.\nContinue next-token prediction on domain text itself, rather than question-and-answer examples.\nSources: Swallow, Institute of Science Tokyo and AIST; AIRoA (2026), and others; S. Gururangan et al., “Don't Stop Pretraining”, ACL 2020.\nA common training sequence:\nPre-trained model → continued pre-training on domain text → SFT for instruction following → RL and evaluation to shape behavior.\nSuitable when:\n• You want broad domain vocabulary and knowledge, such as medicine, law or Japanese.\n• You have much text but no question/answer examples.\nRequirements:\n• Billions to hundreds of billions of tokens of text.\n• Many GPUs and substantial training/evaluation effort.\nCautions:\n• Original capabilities can be forgotten; mix in general text.\n• SFT is needed afterward for instruction following.\n• Unsuitable for frequently changing information.\nExamples: Swallow adds Japanese through continued pre-training of Llama and other models; AIRoA addresses robotics. It also supports domain adaptation in medicine, law and other fields.",
+      "citation": "Lecture 2 · translated PDF p.80"
+    },
+    {
+      "page_id": "lec02-main-p059",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "Lecture 2 summary: four core ideas and what to do tomorrow",
+      "page": 59,
+      "content": "Summary\nLecture 2 summary: four core ideas and what to do tomorrow\nUnderstanding the mechanism tells you the next step.\nCore idea | What to do tomorrow\n1. LLMs select the next words probabilistically. | Before using them, test the same questions multiple times and include unanswerable questions. Guide 1.\n2. Provide information/select a model, adapt it, or let it think more. | Choose from the symptoms: provide/select for knowledge, first use prompts for answer behavior, and more thinking for difficult problems. Guide 2.\n3. Use a map and choose according to “cost < benefit”. | Select three candidates and compare accuracy, cost and latency on your own evaluation set. Guide 3.\n4. FT is strong at changing behavior and weak at adding knowledge. | Once all six checklist items are checked, start small with LoRA/QLoRA. Guide 4.\nNext step:\nAspiring PMs: write 20 evaluation questions for your own topic.\nAspiring engineers: also compare the exercise's JSON output with API structured output.\nML specialists: read Gekhman et al. (2024) and Biderman et al. (2024).",
+      "citation": "Lecture 2 · Japanese source p.59"
+    },
+    {
+      "page_id": "lec02-main-p062",
+      "document_id": "lec02-main",
+      "lecture": 2,
+      "document_title": "Fundamentals of Foundation Models",
+      "section": "When and how to adapt the selected model",
+      "title": "Next: AI agents — today's properties are design assumptions",
+      "page": 62,
+      "content": "Next lecture\nNext: AI agents. Today's properties become design assumptions.\nAn agent adds tools, a loop and memory to today's model so it can act: the outer layer in the diagram on slide 5.\nWhat we learned | How it matters for agents\nProbabilistic selection and varied answers | The same request may lead to different steps each time. Do not trust one success; measure multiple runs.\nPlausible errors | It may call nonexistent tools or misread results. We need mechanisms to check results and conditions for stopping.\nUneven use of long contexts | In long tasks, earlier instructions and results can be missed. Memory needs organization.\nFormat compliance, as in today's exercise | Tool calls use fixed formats such as JSON. The ability to follow a format is foundational.\nCost < benefit | More loops mean more tokens. Decide what to leave to AI and what the program should determine.\nAt the end today, one minute: enter “what I understood least” and “one thing I will do tomorrow” in the form. We will discuss them at the start of the next lecture.\nBefore next time, tentatively: submit the exercise results. Observe what ChatGPT and similar systems do when they search.",
+      "citation": "Lecture 2 · Japanese source p.62"
+    }
+  ]
+}

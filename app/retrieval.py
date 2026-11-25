@@ -143,6 +143,30 @@ def search(query: str) -> list[dict]:
         return [dict(row) for row in rows]
 
 
+
+def search_with_neighbors(query: str) -> list[dict]:
+    """Return vector hits followed by unique adjacent pages in the same document."""
+    hits = search(query)
+    pages = load_pages()
+    by_position = {
+        (page["document_id"], page["page"]): page
+        for page in pages
+    }
+
+    results = [dict(hit) for hit in hits]
+    seen = {hit["page_id"] for hit in hits}
+
+    for hit in hits:
+        for offset in (-1, 1):
+            neighbor = by_position.get(
+                (hit["document_id"], hit["page"] + offset)
+            )
+            if neighbor is not None and neighbor["page_id"] not in seen:
+                results.append(dict(neighbor))
+                seen.add(neighbor["page_id"])
+    return results
+
+
 def search_graph(query: str) -> dict:
     """Start with vector search, then expand candidates through adjacent pages and shared terms."""
     pages = {page["page_id"]: page for page in load_pages(RAG_SOURCE)}
